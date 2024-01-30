@@ -2,32 +2,40 @@ import logo from './logo.svg';
 import './App.css';
 
 
-function Header(){
+function Header(props){
+  console.log("props",props)
   return <header>
-    <h1><a href="/">React</a></h1>
+    <h1><a href="/">{props.title}</a></h1>
   </header> 
 }
-function Nav(){
+function Nav(props){
   return  <nav>
   <ol>
-    <li><a href="/read/1">html</a></li>
-    <li><a href="/read/1">css</a></li>
-    <li><a href="/read/1">js</a></li>
+    {props.topics.map( t =>(
+        <li key={t.id}>
+          <a href={'/read/'+t.id}> {t.title}</a>
+        </li>
+    ))}
   </ol>
 </nav>
 }
-function Article(){
+function Article(props){
   return <article>
-  <h2>Welcome</h2>
-  Hello, Web
+  <h2>{props.title}</h2>
+  {props.body}
 </article>
 }
 function App() {
+  const topics = [
+    {id:1,title:'html',body:'html is ...'},
+    {id:2,title:'css',body:'js is ...'},
+    {id:3,title:'js',body:'js is ...'},
+  ]
   return (
     <div>
-      <Header></Header>
-      <Nav></Nav>
-      <Article></Article>
+      <Header title="React"></Header>
+      <Nav topics={topics}></Nav>
+      <Article title="Welcome" body="Hello, WEB"></Article>
       
     </div>
   );
