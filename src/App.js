@@ -27,6 +27,22 @@ function Article(props){
 </article>
 }
 function App() {
+
+  // scope ,closer
+  const x=1;
+    function A(){
+        const x=10;
+        const B = function(){
+            console.log(x);
+        }
+
+        return B;
+    }
+
+    const C = A();
+    C();
+    // scope ,closer
+    
   
   //const [board,setBoard] = useState({title :'WELCOME',body:'hello, web'});
   const [id,setId] = useState();
